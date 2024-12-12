@@ -172,35 +172,36 @@ function horizontal_tabs_plugin_admin_page() {
         </table>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const container = document.getElementById('tab-group-container');
-            const addButton = document.getElementById('add-tab');
+document.addEventListener('DOMContentLoaded', function () {
+    const container = document.getElementById('tab-group-container');
+    const addButton = document.getElementById('add-tab');
 
-            addButton.addEventListener('click', () => {
-                const div = document.createElement('div');
-                div.className = 'tab-item';
-                div.innerHTML = 
-                    <input type="text" name="tab_titles[]" placeholder="Title" required>
-                    <input type="url" name="tab_images[]" placeholder="Image URL" required>
-                    <input type="text" name="tab_clients[]" placeholder="Client" required>
-                    <input type="text" name="tab_lengths[]" placeholder="Length" required>
-                    <input type="text" name="tab_lanes[]" placeholder="Lane Type" required>
-                    <input type="text" name="tab_statuses[]" placeholder="Status" required>
-                    <button type="button" class="button remove-tab">Remove</button>
-                ;
-                container.appendChild(div);
+    addButton.addEventListener('click', () => {
+        const div = document.createElement('div');
+        div.className = 'tab-item';
+        div.innerHTML = `
+            <input type="text" name="tab_titles[]" placeholder="Title" required>
+            <input type="url" name="tab_images[]" placeholder="Image URL" required>
+            <input type="text" name="tab_clients[]" placeholder="Client" required>
+            <input type="text" name="tab_lengths[]" placeholder="Length" required>
+            <input type="text" name="tab_lanes[]" placeholder="Lane Type" required>
+            <input type="text" name="tab_statuses[]" placeholder="Status" required>
+            <button type="button" class="button remove-tab">Remove</button>
+        `;
+        container.appendChild(div);
 
-                div.querySelector('.remove-tab').addEventListener('click', () => {
-                    div.remove();
-                });
-            });
-
-            container.addEventListener('click', (e) => {
-                if (e.target.classList.contains('remove-tab')) {
-                    e.target.parentElement.remove();
-                }
-            });
+        div.querySelector('.remove-tab').addEventListener('click', () => {
+            div.remove();
         });
+    });
+
+    container.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-tab')) {
+            e.target.parentElement.remove();
+        }
+    });
+});
+
     </script>
     <?php
 }
